@@ -63,7 +63,7 @@ cd /app
 npm install &>>$LOG_FILE_NAME
 VALIDATE $? "unzip "
 
-cp backend.service /etc/systemd/system/backend.service
+cp /root/expense-project/backend.service /etc/systemd/system/backend.service
 
 systemctl daemon-reload
 

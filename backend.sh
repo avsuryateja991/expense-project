@@ -45,7 +45,12 @@ VALIDATE $? "install ndoejs"
 
 
 useradd expense &>>$LOG_FILE_NAME
-VALIDATE $? "user added"
+if [ $? -ne 0]
+then 
+    echo "user already exist"
+else 
+    echo "user added"
+fi
 
 mkdir /app &>>$LOG_FILE_NAME
 VALIDATE $? "app foldr created"

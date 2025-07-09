@@ -21,6 +21,14 @@ CHECKROOT(){
     fi
 }
 
+CHECKING(){
+    if [ $1 -ne 0]
+    then 
+        echo "$2 No"
+    else 
+        echo "$2 yes"
+    fi
+}
 
 ##VARIABLES##
 LOGS_FOLDER="/var/log/"
@@ -45,18 +53,13 @@ VALIDATE $? "install ndoejs"
 
 
 useradd expense &>>$LOG_FILE_NAME
-if [ $? -ne 0]
-then 
-    echo "user already exist"
-else 
-    echo "user added"
-fi
+CHECKING $? "user already exist"
 
 mkdir /app &>>$LOG_FILE_NAME
-VALIDATE $? "app foldr created"
+CHECKING $? "folder exist"
+#VALIDATE $? "app foldr created"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE_NAME
-VALIDATE $? "Download the application code to create ap"
 
 cd /app
 

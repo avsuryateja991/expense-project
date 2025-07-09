@@ -25,24 +25,6 @@ fi
 
 echo "script started eecuting at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
-#dnf list installed mysql &>>$LOG_FILE_NAME
-# if [ $? -ne 0 ]
-# then
-#         dnf install git -y &>>$LOG_FILE_NAME
-#         VALIDATE $? "git"
-# else
-#         echo "GIT already installed"
-# fi
-
-# dnf list installed git &>>$LOG_FILE_NAME
-# if [ $? -ne 0 ]
-# then #not installed.
-#         dnf install mysql-server -y &>>$LOG_FILE_NAME
-#         VALIDATE $? "MYSQL"
-# else
-#         echo "mysql already installed.."
-# fi
-
 dnf install mysql-server -y &>>$LOG_FILE_NAME
 VALIDATE $? " Installing mysql-server"
 

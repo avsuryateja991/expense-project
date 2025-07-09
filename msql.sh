@@ -43,14 +43,23 @@ echo "script started eecuting at: $TIMESTAMP" &>>$LOG_FILE_NAME
 #         echo "mysql already installed.."
 # fi
 
-dnf install mysql-server -y
+dnf install mysql-server -y &>>$LOG_FILE_NAME
 VALIDATE $? " Installing mysql-server"
 
-systemctl enable mysqld
+systemctl enable mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "enablling mysqld"
 
-systemctl start mysqld
+systemctl start mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "starting mysqld"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE_NAME
 VALIDATE $? "setting root password"
+
+
+#if [ $? -ne 0 ]
+# then 
+#         mysql_secure_installation --set-root-pass ExpenseApp@
+#         VALIDATE $? "Setting root password
+# else
+#         echo " Password already set"
+# fi

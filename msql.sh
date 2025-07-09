@@ -42,3 +42,4 @@ then
 else
         echo " Password already set"
 fi
+#mysql -h aitha.online -u root -pExpenseApp@1 -e 'show databases;'

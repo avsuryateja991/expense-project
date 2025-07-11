@@ -21,14 +21,7 @@ CHECKROOT(){
     fi
 }
 
-CHECKING(){
-    if [ $1 -ne 0 ]
-    then 
-        echo "$2 No"
-    else 
-        echo "$2 yes"
-    fi
-}
+
 
 ##VARIABLES##
 LOGS_FOLDER="/var/log/"
@@ -53,38 +46,46 @@ VALIDATE $? "install ndoejs"
 
 
 useradd expense &>>$LOG_FILE_NAME
-CHECKING $? "user already exist"
+VALIDATE $? "user already exist"
 
 mkdir /app &>>$LOG_FILE_NAME
-CHECKING $? "folder exist"
+VALIDATE $? "folder exist"
 #VALIDATE $? "app foldr created"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE_NAME
+VALIDATE $? "backend project download"
 
 cd /app
+VALIDATE $? "flder changed"
 
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "unzip "
 
 cd /app
+VALIDATE $? "fld chagned"
 
 npm install &>>$LOG_FILE_NAME
-VALIDATE $? "unzip "
+VALIDATE $? "npm installed"
 
-cp /home/ec2-user/expense-project/backend.service /etc/systemd/system/backend.service
+cp /home/ec2-user/expense-project/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
+VALIDATE $? "file copied"
 
 #prepare mysql schma 
 
-dnf install mysql -y
+dnf install mysql -y &>>$LOG_FILE_NAME
+VALIDATE $? "dnf installed"
 
 mysql -h mysql.aitha.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
 
 
-systemctl daemon-reload
+systemctl daemon-reload &>>$LOG_FILE_NAME
+VALIDATE $? "deamon-reload"
 
-systemctl enable backend
+systemctl enable backend &>>$LOG_FILE_NAME
+VALIDATE $? "enable backend"
 
-systemctl start backend
+systemctl start backend &>>$LOG_FILE_NAME
+VALIDATE $? "start backend"
 
 
 

@@ -63,7 +63,7 @@ VALIDATE $? "unzip "
 npm install &>>$LOG_FILE_NAME
 VALIDATE $? "npm installed"
 
-cp /home/ec2-user/expense-project/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
+cp /root/expense-project/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
 VALIDATE $? "file copied"
 
 #prepare mysql schma 

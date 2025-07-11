@@ -34,10 +34,11 @@ VALIDATE $? "enablling mysqld"
 systemctl start mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "starting mysqld"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 -e 'show database;'
+mysql -h mysql.aitha.online -uroot -pExpenseApp@1 -e 'show databases;'
+
 if [ $? -ne 0 ]
 then 
-        mysql_secure_installation --set-root-pass ExpenseApp@
+        mysql_secure_installation --set-root-pass ExpenseApp@1
         VALIDATE $? "Setting root password"
 else
         echo " Password already set"

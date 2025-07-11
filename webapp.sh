@@ -30,6 +30,7 @@ LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
 ##SCRIPT$$
 CHECKROOT
+mkdir -p $LOGS_FOLDER
 echo "script started eecuting at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
 dnf install nginx -y  &>>$LOG_FILE_NAME
@@ -47,9 +48,13 @@ VALIDATE $? "rmove path"
 curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOG_FILE_NAME
 VALIDATE $? "downlaod front end content"
 
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html &>>$LOG_FILE_NAME
+VALIDATE $? "dir chagned"
 
-unzip /tmp/frontend.zip
+
+
+unzip /tmp/frontend.zip &>>$LOG_FILE_NAME
+VALIDATE $? "unziped"
 
 cp expense.conf /etc/nginx/default.d/
 

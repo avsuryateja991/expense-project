@@ -54,7 +54,7 @@ curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expen
 VALIDATE $? "backend project download"
 
 cd /app
-echo "$PWD"
+rm -rf /app/*
 #VALIDATE $? "flder changed"
 
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME

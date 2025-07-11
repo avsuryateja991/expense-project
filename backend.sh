@@ -81,6 +81,6 @@ systemctl enable backend
 
 dnf install mysql -y
 
-mysql -h database.aitha.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+mysql -h mysql.aitha.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
 
 systemctl restart backend

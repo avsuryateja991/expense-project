@@ -59,9 +59,6 @@ VALIDATE $? "flder changed"
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "unzip "
 
-cd /app
-VALIDATE $? "fld chagned"
-
 npm install &>>$LOG_FILE_NAME
 VALIDATE $? "npm installed"
 

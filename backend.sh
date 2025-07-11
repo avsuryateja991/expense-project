@@ -43,10 +43,10 @@ VALIDATE $? "enable nodejs"
 dnf install nodejs -y &>>$LOG_FILE_NAME
 VALIDATE $? "install ndoejs"
 
-useradd expense &>>$LOG_FILE_NAME
+useradd expense 
 #VALIDATE $? "user already exist"
 
-mkdir /app &>>$LOG_FILE_NAME
+mkdir /app 
 #VALIDATE $? "folder exist"
 #VALIDATE $? "app foldr created"
 
@@ -54,7 +54,8 @@ curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expen
 VALIDATE $? "backend project download"
 
 cd /app
-VALIDATE $? "flder changed"
+echo "$PWD"
+#VALIDATE $? "flder changed"
 
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "unzip "

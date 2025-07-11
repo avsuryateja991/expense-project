@@ -56,7 +56,7 @@ VALIDATE $? "dir chagned"
 unzip /tmp/frontend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "unziped"
 
-cp expense.conf /etc/nginx/default.d/
+cp /root/expense.conf /etc/nginx/default.d/
 
 
 systemctl restart nginx

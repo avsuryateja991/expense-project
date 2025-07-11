@@ -73,14 +73,19 @@ VALIDATE $? "unzip "
 
 cp /home/ec2-user/expense-project/backend.service /etc/systemd/system/backend.service
 
+#prepare mysql schma 
+
+dnf install mysql -y
+
+mysql -h mysql.aitha.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+
+
 systemctl daemon-reload
 
 systemctl enable backend
 
 systemctl start backend
 
-# dnf install mysql -y
 
-# mysql -h mysql.aitha.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
 
 # systemctl restart backend

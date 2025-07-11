@@ -71,16 +71,16 @@ cd /app
 npm install &>>$LOG_FILE_NAME
 VALIDATE $? "unzip "
 
-cp /root/expense-project/backend.service /etc/systemd/system/backend.service
+cp /home/ec2-user/expense-project/backend.service /etc/systemd/system/backend.service
 
 systemctl daemon-reload
 
-systemctl start backend
-
 systemctl enable backend
 
-dnf install mysql -y
+systemctl start backend
 
-mysql -h mysql.aitha.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+# dnf install mysql -y
 
-systemctl restart backend
+# mysql -h mysql.aitha.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+
+# systemctl restart backend

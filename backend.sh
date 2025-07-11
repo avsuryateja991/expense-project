@@ -43,10 +43,8 @@ VALIDATE $? "enable nodejs"
 dnf install nodejs -y &>>$LOG_FILE_NAME
 VALIDATE $? "install ndoejs"
 
-
-
 useradd expense &>>$LOG_FILE_NAME
-VALIDATE $? "user already exist"
+#VALIDATE $? "user already exist"
 
 mkdir /app &>>$LOG_FILE_NAME
 VALIDATE $? "folder exist"
